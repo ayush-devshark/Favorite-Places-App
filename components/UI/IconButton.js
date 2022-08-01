@@ -7,7 +7,7 @@ export default function IconButton({ onPress, icon, size, color }) {
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       onPress={onPress}
     >
-      <Ionicons icon={icon} size={size} color={color} />
+      <Ionicons name={icon} size={size} color={color} />
     </Pressable>
   );
 }
@@ -15,7 +15,6 @@ export default function IconButton({ onPress, icon, size, color }) {
 const styles = StyleSheet.create({
   button: {
     padding: 8,
-    margin: 4,
     justifyContent: "center",
     alignItems: "center",
   },
