@@ -36,15 +36,16 @@ export default function LocationPicker({ onPickLocation }) {
   }, [route, isFocused]);
 
   useEffect(() => {
-    async function handleLocation() {
-      if (pickedLocation) {
-        const address = await getAddress(
-          pickedLocation.lat,
-          pickedLocation.lng
-        );
-        onPickLocation({ ...pickedLocation, address });
-      }
-      handleLocation();
+    // async function handleLocation() {
+    //   const address = await getAddress(
+    //     pickedLocation.lat,
+    //     pickedLocation.lng
+    //     );
+    //     handleLocation();
+
+    // }
+    if (pickedLocation) {
+      onPickLocation({ ...pickedLocation });
     }
   }, [pickedLocation, onPickLocation]);
 
