@@ -15,7 +15,7 @@ import OutlinedButton from "../UI/OutlinedButton";
 import { COLORS } from "../../constants/colors";
 import { getMapPreview } from "../../util/location";
 
-export default function LocationPicker() {
+export default function LocationPicker({ onPickLocation }) {
   const [pickedLocation, setPickedLocation] = useState(null);
   const isFocused = useIsFocused();
 
@@ -34,6 +34,10 @@ export default function LocationPicker() {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [pickedLocation, onPickLocation]);
 
   async function verifyPermissions() {
     if (
@@ -60,7 +64,10 @@ export default function LocationPicker() {
     if (!hasPermission) {
       return;
     }
-    const location = await getCurrentPositionAsync();
+    const location = await getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Highest,
+      maximumAge: 10000,
+    });
     setPickedLocation({
       lat: location.coords.latitude,
       lng: location.coords.longitude,
