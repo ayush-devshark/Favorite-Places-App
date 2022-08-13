@@ -18,7 +18,12 @@ export default function PlaceDetails({ route, navigation }) {
     loadPlaceData();
   }, [selectedPlaceId]);
 
-  function showonMap() {}
+  function showonMap() {
+    navigation.navigate("Map", {
+      initialLat: placeData.lat,
+      initialLng: placeData.lng,
+    });
+  }
 
   if (!placeData) {
     return (

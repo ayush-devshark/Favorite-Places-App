@@ -42,7 +42,7 @@ export function insertPlace(place) {
           place.location.lng,
         ],
         (_, result) => {
-          console.log(result);
+          // console.log(result);
           resolve(result);
         },
         (_, error) => {
@@ -96,7 +96,7 @@ export function fetchPlaceDetails(id) {
         "SELECT * FROM places WHERE id = ?",
         [id],
         (_, result) => {
-          console.log(result);
+          // console.log(result);
           resolve(result.rows._array[0]);
         },
         (_, error) => {
